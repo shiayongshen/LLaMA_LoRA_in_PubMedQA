@@ -1,0 +1,7 @@
+git+https://github.com/huggingface/peft.git
+git+https://github.com/zphang/transformers.git
+dataset
+loralib
+sentencepiece
+bitsandbytes
+torch
