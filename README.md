@@ -1,21 +1,20 @@
 # 基於LLaMA-7B及LoRA之醫學數據問答集
-本專案將使用LLaMA-7B模型，並使用LoRA之方式進行微調，其訓練資料集PubMedQ&A Dataset
-
+本專案旨在利用 LLaMA-7B 模型，並透過 LoRA 的微調方式，應用於醫學數據問答。我們使用了 PubMedQ&A 資料集進行訓練。
 ## 如何使用
-請先下載requirement.txt
+請先下載 `requirement.txt`中所列的相依套件：
 ```
 pip install -r requirement.txt
 ```
-之後執行
+安裝完套件後，執行以下指令：
 ```
 python app.py
 ```
-即可進入實際測試畫面，並輸入Instruction和Input即可得到Output
+即可進入實際測試界面。您只需輸入指示（Instruction）與輸入（Input），即可獲得相對應的回覆（Output）。
 
-#### 注意：請確定自身設備之GPU vRAM是否足夠，本專案之設備為nVidia 2070×2
+#### 注意：請確認您的 GPU 設備是否擁有足夠的 vRAM。本專案開發時使用了 nVidia 2070×2。
 
 ## 如何微調
-請先確定自身的資料集為['instruction','input','output']之格式，input可為空，之後調整下列參數
+若您想進行模型的微調，請打開`llama.ipynb`。首先，確保您的資料集格式為 ['instruction', 'input', 'output']。其中，輸入（input）部分可為空。接著，您可以調整以下參數：
 ```
 MICRO_BATCH_SIZE = 4    
 BATCH_SIZE = 128
@@ -28,6 +27,7 @@ LORA_ALPHA = 16
 LORA_DROPOUT = 0.05
 VAL_SET_SIZE=10
 ```
-參數可自行依照設備來進行微調，本次使用資料集共211.3K筆，在GPU為2070×2之情況下共訓練8ours
+您可以根據您的硬體設備和需求，調整這些參數。在我們的實驗中，使用了包含 211,300 筆資料的資料集，並在搭載 nVidia 2070×2 的 GPU 上進行訓練，共耗時約 8 小時。
 
 ## 如何使用訓練後之模型
+當訓練完成後，您會在指定的資料夾中找到儲存的模型檔案，檔案名稱應為`adapter_model.bin`和 `adapter_config.json`。在我們的實驗中，我們將這些模型檔案保存在名為`lora-alpaca-1000`的資料夾中，您可以在該資料夾中查閱我們訓練完成的模型檔案及其相關格式式。接著，您需編輯`app.py`，將`lora_weights`參數指向儲存模型的資料夾路徑，然後即可執行程式。
