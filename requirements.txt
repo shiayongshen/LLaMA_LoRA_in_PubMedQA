@@ -5,3 +5,4 @@ loralib
 sentencepiece
 bitsandbytes
 torch
+flask 
