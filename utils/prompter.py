@@ -49,3 +49,4 @@ class Prompter(object):
 
     def get_response(self, output: str) -> str:
         return output.split(self.template["response_split"])[1].strip()
+##This code is referenced from tolen/alpaca-lora
